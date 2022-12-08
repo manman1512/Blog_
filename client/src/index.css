@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  font-size: 2.5em;
+  /* 40px/16=2.5em */
+}
+
+h2 {
+  font-size: 1.875em;
+  /* 30px/16=1.875em */
+}
+p{
+  margin-bottom: 0;
+}
+body {
+  margin: 0;
+  font-family:'Roboto Mono', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.suggestion::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent rgb(250,250,250) transparent;
+  top: -20px;
+  left: 20px;
+}
+.suggestion{
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+#input {
+-moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  background-color: -moz-field;
+  border: 1px solid darkgray;
+  box-shadow: 1px 1px 1px 0 lightgray inset;
+  font: -moz-field;
+  font: -webkit-small-control;
+  padding: 2px 3px;
+}
+.article-img{
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+}
+ul li {
+  list-style: disc;
+}
+ol li {
+  list-style: decimal;
+}
+.tags:first-child{
+  background: #00cfe820;
+  color: #00cfe8;
+}
+.tags:not(:first-child):not(:last-child){
+  background: #7367f020;
+  color: #7367f0;
+}
+.tags:last-child:not(:first-child){
+  background: #ff000020;
+  color: #ff0000;
+}
