@@ -7,6 +7,7 @@ import postsApi from '../../axiosClient/api/posts.js';
 import { BiAddToQueue } from 'react-icons/bi';
 import Post from '../Home/post';
 import { FaSmileBeam } from 'react-icons/fa';
+import Setting from '../Setting/setting';
 
 export default function Personal() {
   const { username } = useParams();
@@ -33,7 +34,8 @@ export default function Personal() {
   return (
     <React.Fragment>
       <Topbar />
-      <div className="p-2 flex flex-wrap gap-x-4 bg-[#F5F5F6] gap-y-8">
+      <Setting />
+      <div className=" p-2 flex flex-wrap gap-x-4  gap-y-8 justify-center">
 
       {posts.length === 0 && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">

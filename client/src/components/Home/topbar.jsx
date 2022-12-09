@@ -58,14 +58,14 @@ export default function Topbar() {
               />
             </div>
           )}
-          <div className="m-5">
+          <div className="m-5" title="Trang chủ">
             <Link to="/">
               <AiFillHome size="1.5rem" />
             </Link>
           </div>
           {state.user && <div className="m-5"></div>}
           {state.user && (
-            <div className="m-5">
+            <div className="m-5" title="Chia sẻ bài viết">
               <Link to="/write" className="">
                 <BiMessageSquareAdd size="1.5rem" />
               </Link>
@@ -99,7 +99,7 @@ export default function Topbar() {
             <p className="mr-3 ml-2 w-20 truncate">{state.user.displayName}</p>
             {/* </Link> */}
             <div className=" absolute invisible group-hover:visible">
-              <div className="bg-[#F0F2F5] mt-32 p-2 relative mr-3 rounded-lg ">
+              <div className="bg-[#F0F2F5] mt-28 p-2 relative mr-3 rounded-lg ">
                 <Link
                   to={`/${state.user.username}/posts`}
                   className="ml-1 flex items-center"
@@ -111,16 +111,7 @@ export default function Topbar() {
                   />
                   <p className="pl-2 text-black hover:text-gray-400">Cá nhân</p>
                 </Link>
-                <Link to="/setting" className="ml-1 flex items-center">
-                  <AiFillSetting
-                    size="1.2rem"
-                    color="black"
-                    className="hover:text-gray-400"
-                  />
-                  <p className="pl-2 text-black hover:text-gray-400">
-                    Chỉnh sửa
-                  </p>
-                </Link>
+
                 <Link
                   to="/logout"
                   className="ml-1 flex items-center "

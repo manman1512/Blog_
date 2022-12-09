@@ -9,11 +9,9 @@ import { setUser } from '../context/Actions';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import Personal from '../Personal';
-import { AiFillSetting } from 'react-icons/ai';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
-export default function Setting() {
+export default function Edit() {
   const [state, dispatch] = useContext(Context);
   const PF = process.env.REACT_APP_SERVER_URL;
 
@@ -132,7 +130,7 @@ export default function Setting() {
   const handleOut = () => {
     // const res = await postsApi.getPost(url)
     navigate('/setting');
-    setModal(false);
+    setModal(false)
     // console.log(res);
   };
 
@@ -151,58 +149,118 @@ export default function Setting() {
 
   return (
     <div>
+      <Topbar />
       <div className="mt-5">
-        <div className="flex justify-center items-center mb-10 w-[45%] mx-auto border-b-2 py-4">
-          <div className="mr-20">
-            <img
-              className="rounded-full w-28 h-28 object-cover "
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : state.user && state.user.profilePic
-                  ? `${PF}/images/${state.user.profilePic}`
-                  : 'https://picsum.photos/40'
-              }
-              alt=""
-            />
+        <div className=" mx-6 mb-10">
+          <div className="flex mb-3 items-center">
+            <BsFillPencilFill />
+            <span className="text-3xl ml-2 ">Chỉnh sửa trang cá nhân</span>
           </div>
+          <form className="flex flex-col text-lg" onSubmit={handleSubmit}>
+            <div className="flex flex-col items-center border-2 p-4 bg-[#F5F5F6]">
+              <div className="flex items-center p-3 relative">
+                <img
+                  className="rounded-full w-28 h-28 object-cover "
+                  src={
+                    file
+                      ? URL.createObjectURL(file)
+                      : state.user && state.user.profilePic
+                      ? `${PF}/images/${state.user.profilePic}`
+                      : 'https://picsum.photos/40'
+                  }
+                  alt=""
+                />
+                <ToastContainer className="mt-9" />
 
-          <div>
-            <div className="flex items-center">
-              <div>
-                <p>{state.user ? state.user.username : ''}</p>
+                <label
+                  htmlFor="profileInp"
+                  className="bg-slate-400 border-4 rounded-full border-green-300 absolute 
+                    right-4 bottom-4 cursor-pointer"
+                >
+                  <BsFillCameraFill size="1rem" color="F9F9F9" />
+                </label>
+                <input
+                  type="file"
+                  name="profile"
+                  id="profileInp"
+                  className="hidden"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
               </div>
               <div>
+                <label htmlFor="displayName" className="mt-3 mr-3 ">
+                  Tên người dùng
+                </label>
+                <input
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  type="text"
+                  id="displayName"
+                  placeholder={state.user ? state.user.displayName : ''}
+                  value={displayName}
+                  className="outline-none border-1 border border-[#9CA3AF] rounded-md p-1 w-1/2"
+                />
+              </div>
+              <div className="mt-3">
+                <label htmlFor="password" className="mt-3 mr-16 ">
+                  Mật khẩu
+                </label>
+                <input
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Nhập mật khẩu mới.."
+                  className="outline-none border-1 border border-[#9CA3AF] rounded-md p-1 w-1/2"
+                />
+              </div>
+
+              <button
+                className=" cursor-pointer rounded-md p-1 mt-5 w-96 border bg-[#F5F5F6]
+                border-black hover:bg-blue-300 active:bg-blue-200"
+                p-2
+                rounded-lg
+                border
+                border-black
+                type="submit"
+              >
+                Cập nhật
+              </button>
+              <ToastContainer className="mt-9" />
+            </div>
+          </form>
+          {/* <div>
+            <span
+              className="mt-3 text-red-500 text-xs cursor-pointer font-bold
+               hover:text-red-400"
+              onClick={handleModal}
+            >
+              Xoá tài khoản
+            </span>
+          </div> */}
+          {/* {modal && (
+            <div>
+              <p>Bạn có chắc muốn xóa tài khoản?</p>
+              <div className="">
                 <button
-                  type="button"
-                  className="border-2 border-gray p-1 rounded-lg ml-10"
+                  className="bg-blue-400 p-1 px-4 rounded-md border border-gray-400 
+                  hover:bg-blue-300 active:bg-blue-200 mr-8"
+                  onClick={handleDelete}
                 >
-                  <Link to="/edit/" className="ml-1 flex items-center">
-                    <AiFillSetting
-                      size="1.2rem"
-                      color="black"
-                      className="hover:text-gray-400"
-                    />
-                    <p className="pl-2 text-black hover:text-gray-400">
-                      Chỉnh sửa trang cá nhân
-                    </p>
-                  </Link>
+                  Có
+                </button>
+                <button
+                  className="bg-blue-400 p-1 px-4 rounded-md border border-gray-400 
+                  hover:bg-blue-300 active:bg-blue-200"
+                  onClick={handleOut}
+                >
+                  Không
                 </button>
               </div>
             </div>
-            <div className="mt-3">
-              <p>0 bài viết</p>
-              <p className="mt-3">
-              Tên người dùng:
-                <b className="ml-1">{state.user ? state.user.displayName : ''}</b>
-              </p>
-            </div>
-            </div>
-            
-            </div>
-            
+          )} */}
+        </div>
+        <div></div>
       </div>
     </div>
   );
 }
-

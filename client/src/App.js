@@ -13,6 +13,7 @@ import { setUser } from './components/context/Actions';
 import { Context } from './components/context/Context';
 import Tags from './components/tags';
 import SearchPost from './components/SearchPost';
+import Edit from './components/Setting/edit';
 
 function App() {
   // const user = false;
@@ -38,6 +39,7 @@ function App() {
           <Route path="/:username/posts" element={<Personal />} />
           <Route path="/posts" element={<SearchPost/>}/>
           <Route path="/setting" element={<Setting />}/>
+          <Route path="/edit" element={<Edit />} />
           <Route path="/update/:postId" element={<Write/>}/>
           <Route path="/tags" element={<Tags />}/>
         </Routes>

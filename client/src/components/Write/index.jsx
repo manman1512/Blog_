@@ -263,7 +263,7 @@ export default function Write() {
             onClick={handleOnSubmit}
             className="p-2 rounded-lg border border-black  hover:bg-blue-300 active:bg-blue-200"
           >
-            {url[1] === 'update' ? 'Cập nhật' : 'Đăng bài viết'}
+            {url[1] === 'update' ? 'Cập nhật' : 'Chia sẻ'}
           </button>
           <ToastContainer className="mt-9" />
 
