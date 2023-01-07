@@ -1,4 +1,6 @@
+import queryString from "query-string";
 import axiosClient from "..";
+import { PER_PAGE } from "../../App";
 
 const postsApi = {
     cratePost: async (data) => {
@@ -10,10 +12,6 @@ const postsApi = {
     updatePost: async (_id,data) => {
         return await axiosClient.patch('/posts/updatePostById/' + _id, data);
     },
-    getPostByAuthor: async (author)=>{
-        console.log(author)
-        return await axiosClient.get("/posts/getPostsByAuthor", {params: {author}});
-    },
     likePost: async (postId, isLike)=>{
         return await axiosClient.post("/posts/like-post",{
             postId,
@@ -22,6 +20,23 @@ const postsApi = {
     },
     isLikePost: async (postId)=>{
         return await axiosClient.get("/posts/like-post",{params: {postId}})
+    },
+    getPostsByAuthor: async (page, author)=>{
+        return await axiosClient.get('/posts/getPostsByAuthor', {
+            params: {
+                author,
+                page,
+                perPage: PER_PAGE
+            }
+        })
+    },
+    getPosts: async (page) => {
+        return await axiosClient.get('/posts/getposts', {
+            params: {
+                page,
+                perPage: PER_PAGE
+            }
+        })
     }
 }
 export default postsApi;

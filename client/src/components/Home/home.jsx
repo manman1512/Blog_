@@ -5,6 +5,9 @@ import Posts from './posts';
 import axiosClient from '../../axiosClient';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AiOutlineDown } from 'react-icons/ai';
+import * as scroll from "react-scroll";
 // import axiosClient from '../../axiosClient';
 // import { useState, useEffect } from 'react';
 // import { useLocation } from 'react-router-dom';
@@ -12,20 +15,24 @@ import { useState } from 'react';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axiosClient.get('/posts/getAllPost');
-      setPosts(res.data);
-    };
-    fetchPosts();
-  }, []);
+  // const navigate = useNavigate();
+  // useEffect(()=>{
+  //   const access_token = window.localStorage.getItem("access_token");
+  //   if(!access_token){
+  //     navigate("/login");
+  //   }
+  // },[])
   return (
-    <div>
+    <div className="relative">
       <Topbar />
       <Header />
-      <div className="flex justify-start mt-6 ">
-        <Posts posts={posts}/>
-      </div>
+      <Posts/>
+      <button
+      onClick={scroll.animateScroll.scrollToBottom}
+      className=" flex justify-center items-center fixed w-8 h-8 rounded-full bg-red-300 bottom-10 right-10 "      
+      >
+      <AiOutlineDown fill="white"/>
+      </button>
     </div>
   );
 }

@@ -14,7 +14,7 @@ import { Context } from './components/context/Context';
 import Tags from './components/tags';
 import SearchPost from './components/SearchPost';
 import Edit from './components/Setting/edit';
-
+export const PER_PAGE = 9;
 function App() {
   // const user = false;
   const [state, dispatch] = useContext(Context);
@@ -29,7 +29,7 @@ function App() {
   }, []);
   return (
     <Router>
-      <div className="App h-screen">
+      <div className="App min-h-screen">
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

@@ -37,7 +37,11 @@ const userSchema = new Schema(
       {
         type: String,
       }
-    ]
+    ],
+    // number: [{
+    //   type: String,
+    //   ref: "Article"
+    // }]
   },
   { timestamps: true }
 );

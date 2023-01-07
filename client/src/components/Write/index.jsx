@@ -131,7 +131,7 @@ export default function Write() {
       });
       try {
         console.log(url);
-        const response = await postsApi.updatePost(url[2], data);
+        // const response = await postsApi.updatePost(url[2], data);
         toast.success('Cập nhật thành công!', {
           position: 'top-right',
           autoClose: 500,

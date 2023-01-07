@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 8080;
   }
 })();
 console.log(path.join(__dirname, 'images'));
-console.log(123123123123);
+// console.log(123123123123);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(

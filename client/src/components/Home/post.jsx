@@ -8,7 +8,6 @@ import { PreviewContent } from '../PreviewContent';
 export default function Post({ post }) {
   const PF = process.env.REACT_APP_SERVER_URL;
   const [previewImage, setPreviewImage] = useState('');
-  console.log(previewImage);
   const [details, setDetails] = useState({
     like: false,
     count: 0

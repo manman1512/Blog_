@@ -1,16 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Topbar from '../Home/topbar';
-import { BsFillCameraFill } from 'react-icons/bs';
-import { BsFillPencilFill } from 'react-icons/bs';
 import { Context } from '../context/Context';
-import axiosClient from '../../axiosClient';
 import { userApi } from '../../axiosClient/api/user';
 import { setUser } from '../context/Actions';
 
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import Personal from '../Personal';
 import { AiFillSetting } from 'react-icons/ai';
 
 export default function Setting() {
@@ -21,14 +15,7 @@ export default function Setting() {
   const [displayName, setDisplayName] = useState(
     state.user ? state.user.displayName : ''
   );
-  const [password, setPassword] = useState('');
-  // const location = useLocation();
-  const navigate = useNavigate();
-  const [modal, setModal] = useState(false);
 
-  // console.log(location)
-
-  // const [, setSuccess] = useState(false);
   useEffect(() => {
     if (state.user) {
       setDisplayName(state.user.displayName);
@@ -38,107 +25,6 @@ export default function Setting() {
     console.log(file);
   }, [file]);
 
-  // console.log(state);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'UPDATE_START' });
-    const updateUser = {
-      userId: state.user._id,
-      displayName,
-      password,
-    };
-    // console.log(password)
-    if (file) {
-      const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append('name', fileName);
-      data.append('file', file);
-      updateUser.profilePic = fileName;
-      try {
-        const response = await userApi.updateAvatar(data);
-        if (response.status === 200) {
-          toast.success('Cập nhật thành công!', {
-            position: 'top-right',
-            autoClose: 500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'colored',
-          });
-        } else {
-          throw new Error('Update fail');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    try {
-      const res = await axiosClient.put(
-        '/users/update/' + state.user._id,
-        updateUser
-      );
-      console.log(res);
-      // setSuccess(true);
-      dispatch({ type: 'UPDATE_SUCCESS', payload: res.data.updateUser });
-      toast.success('Cập nhật thành công!', {
-        position: 'top-right',
-        autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-      });
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: 'UPDATE_FAILURE' });
-    }
-  };
-
-  // XOA TAI KHOAN
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axiosClient.delete(
-        '/users/deleteById/' + state.user._id
-      );
-      // console.log(state.user._id);
-      if (response.status === 200) {
-        toast.success('Xóa Tài khoản thành công!', {
-          position: 'top-right',
-          autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-          onClose: () => {
-            navigate('/');
-          },
-        });
-      } else {
-        alert('Delete fail, check console');
-        console.log(response);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleOut = () => {
-    // const res = await postsApi.getPost(url)
-    navigate('/setting');
-    setModal(false);
-    // console.log(res);
-  };
-
-  const handleModal = () => {
-    setModal(true);
-  };
   useEffect(() => {
     const token = window.localStorage.getItem('accessToken');
     if (token !== null) {
